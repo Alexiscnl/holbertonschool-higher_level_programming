@@ -5,9 +5,9 @@
 <h1 align="center">Python - Hello, World</h1>
 
 ## 📚 Table of Contents
-- [📄 Project Description](#project-description)
-- [🖥️ Requirements](#requirements)
-- [🚀 Tasks](#tasks)
+- [📄 Project Description](#-project-description)
+- [🖥️ Requirements](#-requirements)
+- [🚀 Tasks](#-tasks)
   - [0. Hello, print](#ex00)
   - [1. Print integer](#ex01)
   - [2. Print float](#ex02)
