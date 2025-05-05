@@ -6,16 +6,8 @@
 
 ## 📚 Table of Contents
 - [📄 Project Description](#-project-description)
-- [🖥️ Requirements](#-requirements)
+- [🖥️ Requirements](#requirements)
 - [🚀 Tasks](#-tasks)
-  - [0. Hello, print](#ex00)
-  - [1. Print integer](#ex01)
-  - [2. Print float](#ex02)
-  - [3. Print string](#ex03)
-  - [4. Play with strings](#ex04)
-  - [5. Copy - Cut - Paste](#ex05)
-  - [6. Create a new sentence](#ex06)
-  - [7. Easter Egg](#ex07)
 ---
 
 ## 📄 Project Description
@@ -24,7 +16,7 @@ This repository contains beginner-level Python scripts designed to explore the b
 
 ---
 
-## 🖥️ Requirements
+##  Requirements
 
 - 🐧 Ubuntu 20.04 LTS
 - 🐍 Python 3.8+
