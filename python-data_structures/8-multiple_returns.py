@@ -7,4 +7,3 @@ def multiple_returns(sentence):
         return (0, None)
     else:
         return (lenght, first_chr)
-
