@@ -9,4 +9,3 @@ def divisible_by_2(my_list=[]):
         if el % 2:
             new_list.append(False)
     return new_list
-
