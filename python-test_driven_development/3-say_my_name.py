@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 """
 Module 3-say_my_name
-This module defines a function say_my_name that prints "My name is <first name> <last name>".
+This module defines a function say_my_name that prints "My name is <first name>
+<last name>".
 """
+
+
 def say_my_name(first_name, last_name=""):
     """
     Prints "My name is <first name> <last name>".
@@ -20,6 +23,6 @@ def say_my_name(first_name, last_name=""):
         raise TypeError("last_name must be a string")
 
     if last_name == "":
-        print(f"My name is {first_name}")
+        print(f"My name is {first_name} ")
     else:
         print(f"My name is {first_name} {last_name}")
