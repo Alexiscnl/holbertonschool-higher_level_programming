@@ -4,6 +4,8 @@ Module for add_integer function.
 Adds two numbers, casting floats to ints.
 Raises TypeError if inputs are invalid.
 """
+
+
 def add_integer(a, b=98):
     """
     Adds two integers.
