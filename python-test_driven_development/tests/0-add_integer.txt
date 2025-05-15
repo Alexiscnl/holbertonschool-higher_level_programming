@@ -33,3 +33,12 @@ Result is too large
 ... except OverflowError as e:
 ...     print(e)
 Result is too large
+>>> add_integer(float('nan'), 5)
+Traceback (most recent call last):
+	...
+ValueError: cannot convert float NaN to integer
+
+>>> add_integer(5, float('nan'))
+Traceback (most recent call last):
+	...
+ValueError: cannot convert float NaN to integer
