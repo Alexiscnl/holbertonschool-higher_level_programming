@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Module 2-matrix_divided
+Divides all elements of a matrix by a given number.
+Each element is rounded to 2 decimal places.
+"""
 def matrix_divided(matrix, div):
     """
     Divides all elements of the matrix by `div`.
