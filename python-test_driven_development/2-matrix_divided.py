@@ -4,6 +4,8 @@ Function to divide all elements of a matrix by a given number.
 Checks input types and returns a new matrix with rounded values.
 Raises errors for invalid inputs or division by zero.
 """
+
+
 def matrix_divided(matrix, div):
     """
     Divides all elements of a matrix by div and returns a new matrix.
