@@ -6,6 +6,8 @@ This module defines the text_indentation(text) function, which displays text
 by inserting two newlines after each '.', '?', or ':'.
 The text must not begin or end with a space on any line.
 """
+
+
 def text_indentation(text):
     """
     Prints a text with 2 new lines after each '.', '?' and ':'.
