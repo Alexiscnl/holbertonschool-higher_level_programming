@@ -6,7 +6,6 @@ Defines a Square class with a private attribute size
 
 
 class Square:
-    pass
 
     def __init__(self, size):
         self.__size = size
