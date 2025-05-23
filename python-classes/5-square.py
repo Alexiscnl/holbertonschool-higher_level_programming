@@ -21,7 +21,7 @@ class Square:
         Args:
             size (int): The size of the square (default 0).
         """
-        self.size = size  # Use setter to validate
+        self.size = size
 
     def area(self):
         """
