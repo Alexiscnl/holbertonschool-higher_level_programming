@@ -1,6 +1,11 @@
 #!/usr/bin/python3
+"""
+This module provides the Rectangle class.
 
-# Define a class to represent a rectangle
+It supports computing area, perimeter, and text-based rendering.
+"""
+
+
 class Rectangle:
     def __init__(self, width=0, height=0):
         """
