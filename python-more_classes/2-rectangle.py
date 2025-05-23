@@ -7,6 +7,12 @@ It supports computing area, perimeter, and text-based rendering.
 
 
 class Rectangle:
+    """
+    Representation of a rectangle.
+        Attributes:
+        width (int): Rectangle width (must be >= 0).
+        height (int): Rectangle height (must be >= 0).
+    """
     def __init__(self, width=0, height=0):
         """
         Initialize a new Rectangle instance.
