@@ -3,6 +3,7 @@
 This module defines a Rectangle class with width and height validation.
 """
 
+
 class Rectangle:
     """
     A class to represent a rectangle.
