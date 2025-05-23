@@ -8,6 +8,7 @@ Defines a Square class with:
 - print method to display the square with '#'
 """
 
+
 class Square:
     """
     Represents a square with size validation,
@@ -23,18 +24,9 @@ class Square:
         """
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
-        if size < 0:
-            raise TypeError("size must be >= 0")
+        elif size < 0:
+            raise ValueError("size must be >= 0")
         self.__size = size
-
-    def area(self):
-        """
-        Returns the current square area.
-
-        Returns:
-            int: area = size * size
-        """
-        return self.__size ** 2
 
     @property
     def size(self):
@@ -55,9 +47,18 @@ class Square:
         """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
+
+    def area(self):
+        """
+        Returns the current square area.
+
+        Returns:
+            int: area = size * size
+        """
+        return self.__size ** 2
 
     def my_print(self):
         """
