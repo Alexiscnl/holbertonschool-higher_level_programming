@@ -5,6 +5,7 @@ This module provides the Rectangle class.
 It supports computing area, perimeter, and text-based rendering.
 """
 
+
 class Rectangle:
     """
     Representation of a rectangle.
