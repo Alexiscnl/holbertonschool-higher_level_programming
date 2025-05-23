@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-This module provides the Rectangle class.
-It supports computing area, perimeter, and text-based rendering.
+This module defines a Rectangle class with width and height validation.
 """
+
 class Rectangle:
     """
     A class to represent a rectangle.
