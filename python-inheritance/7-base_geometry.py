@@ -13,7 +13,8 @@ class BaseGeometry:
 
     Methods:
         area(self): Raises an Exception to indicate it is not yet implemented.
-        integer_validator(self, name, value): Validates that 'value' is a positive integer.
+        integer_validator(self, name, value): Validates that 'value'
+          is a positive integer.
     """
 
     def area(self):
