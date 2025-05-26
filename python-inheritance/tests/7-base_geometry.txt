@@ -1,0 +1,20 @@
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+
+>>> bg.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
+
+>>> bg.integer_validator("width", 10)
+>>> bg.integer_validator("height", 1)
+
+>>> bg.integer_validator("age", -5)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
+
+>>> bg.integer_validator("length", "12")
+Traceback (most recent call last):
+...
+TypeError: length must be an integer
