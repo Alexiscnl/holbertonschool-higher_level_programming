@@ -7,6 +7,7 @@ It can be used for introspection to explore the capabilities
 of a given Python object.
 """
 
+
 def lookup(obj):
     """
     Returns a list of available attributes and methods of an object.

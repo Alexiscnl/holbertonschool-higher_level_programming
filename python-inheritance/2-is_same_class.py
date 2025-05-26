@@ -8,6 +8,7 @@ The function returns True if the object is a direct instance
 of the specified class, otherwise False.
 """
 
+
 def is_same_class(obj, a_class):
     """
     Retourne True si obj est exactement une instance de a_class,
