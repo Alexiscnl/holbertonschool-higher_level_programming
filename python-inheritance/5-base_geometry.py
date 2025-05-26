@@ -5,6 +5,7 @@ Module 5-base_geometry
 Defines an empty class BaseGeometry.
 """
 
+
 class BaseGeometry:
     """
     A base class for geometry-related operations.

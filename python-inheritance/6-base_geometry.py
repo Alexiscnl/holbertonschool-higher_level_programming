@@ -5,6 +5,7 @@ Module 6-base_geometry
 Defines a BaseGeometry class with an unimplemented area method.
 """
 
+
 class BaseGeometry:
     """
     Base class for geometry-related calculations.
