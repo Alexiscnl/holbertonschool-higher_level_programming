@@ -6,10 +6,10 @@
 
 ---
 📚 Resources:
-		[📘 Inheritance - Python Docs**](https://intranet.hbtn.io/rltoken/pRigaMtzlZIXHVXZJ7yRMQ)
-		[🧬 Multiple Inheritance**](https://intranet.hbtn.io/rltoken/q7hgZ43Gu_snerCNUwqzuw)
-		[🧙 Inheritance in Python (video)**](https://intranet.hbtn.io/rltoken/04VYC46DWxWLhcUpRVmHGg)
-		[🧠 Learn to Program 10: Inheritance & Magic Methods**](https://www.youtube.com/watch?v=RSl87lqOXDE)
+		[📘 Inheritance - Python Docs](https://intranet.hbtn.io/rltoken/pRigaMtzlZIXHVXZJ7yRMQ),
+		[🧬 Multiple Inheritance](https://intranet.hbtn.io/rltoken/q7hgZ43Gu_snerCNUwqzuw),
+		[🧙 Inheritance in Python (video)](https://intranet.hbtn.io/rltoken/04VYC46DWxWLhcUpRVmHGg),
+		[🧠 Learn to Program 10: Inheritance & Magic Methods](https://www.youtube.com/watch?v=RSl87lqOXDE).
 		
 ## 📚 Table of Contents
 
