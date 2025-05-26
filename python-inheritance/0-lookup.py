@@ -1,4 +1,11 @@
 #!/usr/bin/python3
+"""
+This module provides a single function that retrieves
+a list of available attributes and methods of an object.
+
+It can be used for introspection to explore the capabilities
+of a given Python object.
+"""
 
 def lookup(obj):
     """
