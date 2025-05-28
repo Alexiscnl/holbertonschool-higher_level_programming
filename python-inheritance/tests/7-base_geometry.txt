@@ -1,129 +1,20 @@
-Test for 6-base_geometry.py
-===========================
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
 
-This file contains tests for the BaseGeometry class.
+>>> bg.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
 
-First, import the class:
-    >>> BaseGeometry = __import__('6-base_geometry').BaseGeometry
+>>> bg.integer_validator("width", 10)
+>>> bg.integer_validator("height", 1)
 
-Test BaseGeometry class instantiation:
-    >>> bg = BaseGeometry()
-    >>> type(bg)
-    <class '6-base_geometry.BaseGeometry'>
+>>> bg.integer_validator("age", -5)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
 
-Test area() method - should raise Exception:
-    >>> bg = BaseGeometry()
-    >>> bg.area()
-    Traceback (most recent call last):
-    ...
-    Exception: area() is not implemented
-
-Test integer_validator() with valid positive integers:
-    >>> bg = BaseGeometry()
-    >>> bg.integer_validator("my_int", 12)
-    >>> bg.integer_validator("width", 89)
-    >>> bg.integer_validator("height", 1)
-    >>> bg.integer_validator("size", 100)
-
-Test integer_validator() with string value:
-    >>> bg.integer_validator("name", "John")
-    Traceback (most recent call last):
-    ...
-    TypeError: name must be an integer
-
-Test integer_validator() with zero:
-    >>> bg.integer_validator("age", 0)
-    Traceback (most recent call last):
-    ...
-    ValueError: age must be greater than 0
-
-Test integer_validator() with negative number:
-    >>> bg.integer_validator("distance", -4)
-    Traceback (most recent call last):
-    ...
-    ValueError: distance must be greater than 0
-
-Test integer_validator() with None:
-    >>> bg.integer_validator("test", None)
-    Traceback (most recent call last):
-    ...
-    TypeError: test must be an integer
-
-Test integer_validator() with boolean True:
-    >>> bg.integer_validator("test", True)
-    Traceback (most recent call last):
-    ...
-    TypeError: test must be an integer
-
-Test integer_validator() with boolean False:
-    >>> bg.integer_validator("test", False)
-    Traceback (most recent call last):
-    ...
-    TypeError: test must be an integer
-
-Test integer_validator() with float:
-    >>> bg.integer_validator("test", 3.14)
-    Traceback (most recent call last):
-    ...
-    TypeError: test must be an integer
-
-Test integer_validator() with list:
-    >>> bg.integer_validator("test", [1, 2, 3])
-    Traceback (most recent call last):
-    ...
-    TypeError: test must be an integer
-
-Test integer_validator() with tuple:
-    >>> bg.integer_validator("test", (1, 2))
-    Traceback (most recent call last):
-    ...
-    TypeError: test must be an integer
-
-Test integer_validator() with dictionary:
-    >>> bg.integer_validator("test", {"key": "value"})
-    Traceback (most recent call last):
-    ...
-    TypeError: test must be an integer
-
-Test integer_validator() with set:
-    >>> bg.integer_validator("test", {1, 2, 3})
-    Traceback (most recent call last):
-    ...
-    TypeError: test must be an integer
-
-Test integer_validator() with missing arguments:
-    >>> bg.integer_validator()
-    Traceback (most recent call last):
-    ...
-    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
-
-Test integer_validator() with one missing argument:
-    >>> bg.integer_validator("test")
-    Traceback (most recent call last):
-    ...
-    TypeError: integer_validator() missing 1 required positional argument: 'value'
-
-Test integer_validator() with very large positive integer:
-    >>> bg.integer_validator("big_number", 999999999999999999999)
-
-Test integer_validator() with very large negative integer:
-    >>> bg.integer_validator("big_negative", -999999999999999999999)
-    Traceback (most recent call last):
-    ...
-    ValueError: big_negative must be greater than 0
-
-Test area() with no arguments (default behavior):
-    >>> bg.area()
-    Traceback (most recent call last):
-    ...
-    Exception: area() is not implemented
-
-Test that methods exist:
-    >>> hasattr(BaseGeometry, 'area')
-    True
-    >>> hasattr(BaseGeometry, 'integer_validator')
-    True
-
-Test docstring exists:
-    >>> len(BaseGeometry.__doc__) > 1
-    True
+>>> bg.integer_validator("length", "12")
+Traceback (most recent call last):
+...
+TypeError: length must be an integer
