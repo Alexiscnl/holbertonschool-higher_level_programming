@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
-Module 6-base_geometry
+Module 8-rectangle
 
 Defines a BaseGeometry class with an unimplemented area method and
-a validator for integer values.
+a validator for integer values, and a Rectangle class that inherits from it.
 """
 
 
