@@ -44,8 +44,6 @@ class Circle(Shape):
         Raises:
             TypeError: if radius is not a number
         """
-        if not isinstance(radius, (int, float)):
-            raise TypeError("radius must be a number")
         self.radius = radius
 
     def area(self):
@@ -73,10 +71,6 @@ class Rectangle(Shape):
         Raises:
             TypeError: if width or height is not a number
         """
-        if not isinstance(width, (int, float)):
-            raise TypeError("width must be a number")
-        if not isinstance(height, (int, float)):
-            raise TypeError("height must be a number")
         self.width = width
         self.height = height
 
