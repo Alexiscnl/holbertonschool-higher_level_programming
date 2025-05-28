@@ -1,61 +1,33 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 This module defines the VerboseList class,
-which extends the built-in Python list to provide
-notifications for list modifications such as append, extend,
-remove, and pop operations.
+which extends Python's built-in list.
+It overrides standard list modification methods to print informative messages
+whenever the list is modified.
 """
 
 
 class VerboseList(list):
-    """
-    A custom list class that prints notifications when items are
-    added or removed. Inherits from the built-in list class.
-    """
+    """A subclass of list that prints messages when modified."""
 
     def append(self, item):
-        """
-        Add an item to the end of the list and print a notification.
-
-        Args:
-            item: The item to be appended to the list.
-        """
+        """Append an item to the list and print a notification."""
         super().append(item)
         print(f"Added [{item}] to the list.")
 
     def extend(self, iterable):
-        """
-        Extend the list by appending elements from the iterable,
-        and print how many items were added.
-
-        Args:
-            iterable: An iterable containing items to add to the list.
-        """
-        count = len(iterable)
+        """Extend the list with an iterable and print a notification."""
         super().extend(iterable)
-        print(f"Extended the list with [{count}] items.")
+        print(f"Extended the list with [{len(iterable)}] items.")
 
-    def remove(self, value):
-        """
-        Remove the first occurrence of the specified value
-        from the list and print a notification.
-
-        Args:
-            value: The value to remove from the list.
-        """
-        super().remove(value)
-        print(f"Removed [{value}] from the list.")
+    def remove(self, item):
+        """Remove an item from the list and print a notification."""
+        super().remove(item)
+        print(f"Removed [{item}] from the list.")
 
     def pop(self, index=-1):
-        """
-        Remove and return the item at the given position in the list.
-        If no index is specified, the last item is removed.
-        Prints a notification with the removed item.
-
-        Args:
-            index (int, optional): The position of the item to remove.
-            Defaults to -1.
-        """
-        item = self[index]
-        super().pop(index)
+        """Remove and return item at index (default last),
+        with notification."""
+        item = super().pop(index)
         print(f"Popped [{item}] from the list.")
+        return item
