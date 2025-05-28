@@ -1,35 +1,71 @@
->>> MyList = __import__('1-my_list').MyList
->>> my_list = MyList()
->>> my_list
-[]
->>> my_list.print_sorted()
-[]
->>> my_list
-[]
+Test for 1-my_list.py
+======================
 
->>> my_list = MyList()
->>> my_list.extend([1, 2, 3])
->>> my_list
-[1, 2, 3]
->>> my_list.print_sorted()
-[1, 2, 3]
->>> my_list
-[1, 2, 3]
+This file contains tests for the MyList class.
 
->>> my_list = MyList()
->>> my_list.extend([5, 4, 3, 2, 1])
->>> my_list
-[5, 4, 3, 2, 1]
->>> my_list.print_sorted()
-[1, 2, 3, 4, 5]
->>> my_list
-[5, 4, 3, 2, 1]
+First, import the class:
+    >>> MyList = __import__('1-my_list').MyList
 
->>> my_list = MyList()
->>> my_list.extend([3, 1, 2, 3, 1])
->>> my_list
-[3, 1, 2, 3, 1]
->>> my_list.print_sorted()
-[1, 1, 2, 3, 3]
->>> my_list
-[3, 1, 2, 3, 1]
+Test basic functionality:
+    >>> my_list = MyList()
+    >>> my_list.append(1)
+    >>> my_list.append(4)
+    >>> my_list.append(2)
+    >>> my_list.append(3)
+    >>> my_list.append(5)
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+    >>> my_list.print_sorted()
+    [1, 2, 3, 4, 5]
+    >>> print(my_list)
+    [1, 4, 2, 3, 5]
+
+Test with empty list:
+    >>> empty_list = MyList()
+    >>> empty_list.print_sorted()
+    []
+
+Test with single element:
+    >>> single_list = MyList()
+    >>> single_list.append(42)
+    >>> single_list.print_sorted()
+    [42]
+
+Test with negative numbers:
+    >>> neg_list = MyList()
+    >>> neg_list.append(-5)
+    >>> neg_list.append(3)
+    >>> neg_list.append(-1)
+    >>> neg_list.append(0)
+    >>> neg_list.print_sorted()
+    [-5, -1, 0, 3]
+
+Test with duplicate numbers:
+    >>> dup_list = MyList()
+    >>> dup_list.append(3)
+    >>> dup_list.append(1)
+    >>> dup_list.append(3)
+    >>> dup_list.append(2)
+    >>> dup_list.append(1)
+    >>> dup_list.print_sorted()
+    [1, 1, 2, 3, 3]
+
+Test inheritance - MyList should be instance of list:
+    >>> my_list = MyList()
+    >>> isinstance(my_list, list)
+    True
+
+Test that print_sorted doesn't modify original list:
+    >>> test_list = MyList([5, 1, 3, 2, 4])
+    >>> original = test_list.copy()
+    >>> test_list.print_sorted()
+    [1, 2, 3, 4, 5]
+    >>> test_list == original
+    True
+
+Test with constructor initialization:
+    >>> init_list = MyList([9, 2, 7, 1])
+    >>> init_list.print_sorted()
+    [1, 2, 7, 9]
+    >>> print(init_list)
+    [9, 2, 7, 1]
