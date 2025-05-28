@@ -94,6 +94,10 @@ class Rectangle(Shape):
             width (float): The width of the rectangle.
             height (float): The height of the rectangle.
         """
+        if not isinstance(width, (int, float)):
+            raise TypeError("width must be a number")
+        if not isinstance(height, (int, float)):
+            raise TypeError("height must be a number")
         self.width = width
         self.height = height
 
