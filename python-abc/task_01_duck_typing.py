@@ -2,16 +2,10 @@
 """
 Module: task_01_duck_typing
 
-This module defines an abstract base class `Shape` with two abstract
-methods: `area()` and `perimeter()`.
-It also implements two concrete shape classes: `Circle` and `Rectangle`,
-each providing specific logic
-to calculate area and perimeter.
-
-Additionally, it defines a utility function `shape_info()` that demonstrates
-duck typing by operating
-on any object that implements the expected interface, regardless of its actual
-type.
+Defines:
+- an abstract base class `Shape` with abstract methods `area()` and `perimeter()`
+- two concrete classes `Circle` and `Rectangle` that implement these methods
+- a function `shape_info()` that uses duck typing to display shape metrics
 """
 
 from abc import ABC, abstractmethod
@@ -20,79 +14,64 @@ import math
 
 class Shape(ABC):
     """
-    Abstract class defining the interface for all shapes.
-    Subclasses must implement the `area` and `perimeter` methods.
+    Abstract base class for shapes.
+    Requires implementing area and perimeter methods.
     """
 
     @abstractmethod
     def area(self):
-        """
-        Compute and return the area of the shape.
-        Must be implemented by all subclasses.
-        """
+        """Compute and return the area."""
         pass
 
     @abstractmethod
     def perimeter(self):
-        """
-        Compute and return the perimeter of the shape.
-        Must be implemented by all subclasses.
-        """
+        """Compute and return the perimeter."""
         pass
 
 
 class Circle(Shape):
     """
-    Circle class implementing the Shape interface.
-
-    Attributes:
-        radius (float): The radius of the circle.
+    Circle shape implementing the Shape interface.
     """
 
     def __init__(self, radius):
         """
-        Initialize a Circle instance with the given radius.
+        Initialize the circle with a radius.
 
         Args:
-            radius (float): The radius of the circle.
+            radius (float): radius of the circle
+
+        Raises:
+            TypeError: if radius is not a number
         """
+        if not isinstance(radius, (int, float)):
+            raise TypeError("radius must be a number")
         self.radius = radius
 
     def area(self):
-        """
-        Calculate and return the area of the circle.
-
-        Returns:
-            float: The area of the circle.
-        """
+        """Return area of the circle."""
         return math.pi * self.radius ** 2
 
     def perimeter(self):
-        """
-        Calculate and return the perimeter (circumference) of the circle.
-
-        Returns:
-            float: The perimeter of the circle.
-        """
+        """Return perimeter (circumference) of the circle."""
         return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
     """
-    Rectangle class implementing the Shape interface.
-
-    Attributes:
-        width (float): The width of the rectangle.
-        height (float): The height of the rectangle.
+    Rectangle shape implementing the Shape interface.
     """
 
     def __init__(self, width, height):
         """
-        Initialize a Rectangle instance with the given width and height.
+        Initialize the rectangle with width and height.
 
         Args:
-            width (float): The width of the rectangle.
-            height (float): The height of the rectangle.
+            width (float): width of the rectangle
+            height (float): height of the rectangle
+
+        Raises:
+            TypeError: if width or height is not a number
         """
         if not isinstance(width, (int, float)):
             raise TypeError("width must be a number")
@@ -102,35 +81,17 @@ class Rectangle(Shape):
         self.height = height
 
     def area(self):
-        """
-        Calculate and return the area of the rectangle.
-
-        Returns:
-            float: The area of the rectangle.
-        """
+        """Return area of the rectangle."""
         return self.width * self.height
 
     def perimeter(self):
-        """
-        Calculate and return the perimeter of the rectangle.
-
-        Returns:
-            float: The perimeter of the rectangle.
-        """
+        """Return perimeter of the rectangle."""
         return 2 * (self.width + self.height)
-
 
 def shape_info(obj):
     """
     Display the area and perimeter of any shape object
-    that implements the area() and perimeter() methods.
-
-    This function uses duck typing and does not check the object's class.
-
-    Args:
-        obj (Shape): Any object implementing area() and perimeter().
+    that implements area() and perimeter().
     """
-    area = obj.area()
-    perimeter = obj.perimeter()
-    print("Area:", area)
-    print("Perimeter:", perimeter)
+    print("Area:", obj.area())
+    print("Perimeter:", obj.perimeter())
