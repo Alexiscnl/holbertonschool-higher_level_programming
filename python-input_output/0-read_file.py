@@ -15,4 +15,4 @@ def read_file(filename=""):
         filename (str): Le nom du fichier à lire. Par défaut, une chaîne vide.
     """
     with open(filename, "r", encoding="UTF-8")as f:
-        print(f.read(), end="")
+        print(f.read().rstrip('\n'), end="")
