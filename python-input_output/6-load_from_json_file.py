@@ -6,6 +6,7 @@ from a JSON-formatted file.
 
 import json
 
+
 def load_from_json_file(filename):
     """
     Loads a Python object from a JSON file.
