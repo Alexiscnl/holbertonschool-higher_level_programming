@@ -9,7 +9,7 @@ print(type(s_my_list))
 my_dict = {
     'id': 12,
     'name': "John",
-    'places': [ "San Francisco", "Tokyo" ],
+    'places': ["San Francisco", "Tokyo"],
     'is_active': True,
     'info': {
         'age': 36,
@@ -21,7 +21,7 @@ print(s_my_dict)
 print(type(s_my_dict))
 
 try:
-    my_set = { 132, 3 }
+    my_set = {132, 3}
     s_my_set = to_json_string(my_set)
     print(s_my_set)
     print(type(s_my_set))

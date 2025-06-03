@@ -6,6 +6,7 @@ This script defines a function that writes a string to a UTF-8 encoded
 text file and returns the number of characters written.
 """
 
+
 def write_file(filename="", text=""):
     """
     Writes a string to a text file (UTF-8 encoded).
