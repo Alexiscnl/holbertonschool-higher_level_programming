@@ -4,6 +4,7 @@ This module defines the Student class with support
 for selective JSON serialization.
 """
 
+
 class Student:
     """
     Represents a student with first name, last name, and age.
@@ -25,7 +26,8 @@ class Student:
     def to_json(self, attrs=None):
         """
         Retrieves a dictionary representation of the Student instance.
-        If 'attrs' is a list of strings, only those attributes will be included.
+        If 'attrs' is a list of strings, only those attributes will be
+        included.
 
         Args:
             attrs (list, optional): A list of attribute names to include.

@@ -4,6 +4,7 @@ This module defines a Student class with basic attributes
 and a method to retrieve a JSON-serializable dictionary representation.
 """
 
+
 class Student:
     """
     Represents a student with a first name, last name, and age.

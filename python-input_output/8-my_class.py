@@ -2,6 +2,7 @@
 """ My class module
 """
 
+
 class MyClass:
     """ My class
     """

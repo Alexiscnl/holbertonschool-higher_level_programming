@@ -5,6 +5,7 @@ dictionary representation of an object's attributes
 for JSON serialization.
 """
 
+
 def class_to_json(obj):
     """
     Returns a dictionary description of a simple Python object
