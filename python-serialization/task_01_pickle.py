@@ -2,6 +2,7 @@
 
 import pickle
 
+
 class CustomObject:
     """
     A class to represent a custom object with serialization capabilities.
@@ -38,7 +39,8 @@ class CustomObject:
         Serializes the current instance and saves it to a file.
 
         Args:
-            filename (str): The name of the file where the object will be saved.
+            filename (str): The name of the file where the object will be
+            saved.
 
         Returns:
             None if an error occurs during serialization.
