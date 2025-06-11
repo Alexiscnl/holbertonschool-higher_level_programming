@@ -1,54 +1,57 @@
 #!/usr/bin/python3
-"""Simple API using http.server"""
-
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import json
+"""Python web server that handles different HTTP endpoints"""
+import http.server
 import socketserver
+import json
+
 
 PORT = 8000
 
 
-class MyHandler(BaseHTTPRequestHandler):
-    """Custom handler to manage GET requests"""
+class MyHandler(http.server.BaseHTTPRequestHandler):
+    """Custom HTTP request handler class"""
 
     def do_GET(self):
-        """Handle GET requests"""
+        """Handle GET requests to different endpoints"""
+
+        # Root endpoint
         if self.path == "/":
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write("Hello, this is a simple API!".encode())
 
+        # Data endpoint
         elif self.path == "/data":
             self.send_response(200)
             self.send_header("Content-type", "application/json")
             self.end_headers()
-            dic = {"name": "John", "age": 30, "city": "New York"}
-            self.wfile.write(json.dumps(dic).encode())
+            data = {"name": "John", "age": 30, "city": "New York"}
+            self.wfile.write(json.dumps(data).encode())
 
+        # Info endpoint
         elif self.path == "/info":
             self.send_response(200)
             self.send_header("Content-type", "application/json")
             self.end_headers()
-            dic2 = {
-                "version": "1.0",
-                "description": "A simple API built with http.server"
-            }
-            self.wfile.write(json.dumps(dic2).encode())
+            info = {"version": "1.0", "description": "A simple API built with http.server"}
+            self.wfile.write(json.dumps(info).encode())
 
+        # Status endpoint
         elif self.path == "/status":
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            dic_status = {"status": "OK"}
-            self.wfile.write(json.dumps(dic_status).encode())
+            self.wfile.write("OK".encode())
 
+        # 404 Handler
         else:
             self.send_response(404)
             self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"404 - Not Found")
+            self.wfile.write("Endpoint not found".encode())
 
-with socketserver.TCPServer(("", PORT), MyHandler) as http:
+
+with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
     print(f"Serving at port {PORT}")
-    http.serve_forever()
+    httpd.serve_forever()
