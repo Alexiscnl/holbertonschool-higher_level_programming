@@ -1,121 +1,91 @@
 #!/usr/bin/python3
-"""
-A simple Flask API application demonstrating basic CRUD operations.
-
-This module sets up a Flask web server with endpoints to:
-- Serve a welcome message
-- Provide status checks
-- List, retrieve, create, update, and delete users in memory
-
-Environment:
-- Python 3
-- Flask
-"""
 
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-users = {
-    "jane": {
-        "username": "jane",
-        "name": "Jane",
-        "age": 28,
-        "city": "Los Angeles"
-    }
-}
+users = {}
 
-
-@app.route("/")
+# Root endpoint
+@app.route("/", methods=["GET"])
 def home():
     """
-    Root endpoint.
+    Root endpoint that returns a welcome message.
 
     Returns:
         str: Welcome message.
     """
     return "Welcome to the Flask API!"
 
-
-@app.route("/status")
-def status():
+# Data endpoint
+@app.route("/data", methods=["GET"])
+def data():
     """
-    Health check endpoint.
+    Endpoint that returns a list of all usernames.
 
     Returns:
-        str: "OK" if server is running.
-    """
-    return "OK"
-
-
-@app.route("/data")
-def list_users():
-    """
-    Retrieve all usernames.
-
-    Returns:
-        Response: JSON list of usernames.
+        Response: JSON response with list of usernames.
     """
     return jsonify(list(users.keys()))
 
-
-@app.route("/users/<username>")
-def get_user(username):
+# Status endpoint
+@app.route("/status", methods=["GET"])
+def status():
     """
-    Retrieve details for a specific user.
-
-    Args:
-        username (str): The username identifier from the URL.
+    Status endpoint to verify the server is running.
 
     Returns:
-        Response: JSON user details or error message with status code.
+        str: "OK" string.
     """
-    if username in users:
-        return jsonify(users[username])
-    return jsonify({"error": "User not found"}), 404
+    return "OK"
 
+# Users username endpoint
+@app.route("/users/<username>", methods=["GET"])
+def get_user(username):
+    """
+    Get user data by username.
 
+    Args:
+        username (str): The username to look up.
+
+    Returns:
+        Response: JSON response with user data or error message.
+    """
+    if username not in users:
+        return jsonify({"error": "User not found"}), 404
+    return jsonify(users[username])
+
+# Add_user endpoint
 @app.route("/add_user", methods=["POST"])
 def create_user():
     """
-    Create a new user from JSON payload.
+    Add a new user from JSON payload.
 
-    Expected JSON fields:
-        - username (str): Unique user key
-        - name (str): Full name of the user
-        - age (int): Age of the user
-        - city (str): City of residence
+    Expected JSON body:
+        {
+            "username": "alice",
+            "name": "Alice",
+            "age": 25,
+            "city": "Paris"
+        }
 
     Returns:
-        Response: Success message with new user data or error message.
+        Response: JSON response with confirmation message and user data,
+        or error message if validation fails.
     """
     data = request.get_json()
-    if not data:
-        return jsonify({"error": "Request must be JSON"}), 400
 
-    for field in ["username", "name", "age", "city"]:
-        if field not in data:
-            return jsonify({"error": f"{field.capitalize()} is required"}), 400
+    if "username" not in data:
+        return jsonify({"error": "Username is required"}), 400
 
-    username = data["username"]
-    if username in users:
-        return jsonify({"error": "User already exists"}), 400
+    username = data.get("username")
 
-    users[username] = {
-        "username": username,
-        "name": data["name"],
-        "age": data["age"],
-        "city": data["city"]
-    }
+    if not username:
+        return jsonify({"error": "Username already exists"}), 409
 
-    return jsonify({
-        "message": "User added",
-        "user": users[username]
-    }), 201
+    users[username] = data
 
+    return jsonify({"message": "User added", "user": data}), 201
 
 if __name__ == "__main__":
-    """
-    Entry point for running the Flask development server.
-    """
-    app.run(debug=True)
+    app.run()
