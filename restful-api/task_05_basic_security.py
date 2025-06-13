@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Secure Flask API with Basic Auth and JWT."""
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
@@ -7,15 +8,15 @@ from flask_jwt_extended import (
     JWTManager, create_access_token, jwt_required, get_jwt_identity
 )
 
-# Initialisation de l'application Flask
+# Initialize the Flask application
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "cle-secrete-ultra-securisee"
 
-# Configuration des extensions
+# Configure authentication extensions
 jwt = JWTManager(app)
 auth = HTTPBasicAuth()
 
-# Base d'utilisateurs en mémoire avec mot de passe haché et rôle
+# In-memory user database with hashed passwords and roles
 users = {
     "bob": {
         "username": "bob",
@@ -33,28 +34,28 @@ users = {
 @auth.verify_password
 def verify_password(username, password):
     """
-    Vérifie les identifiants pour Basic Auth.
+    Verify credentials for Basic Auth.
 
     Args:
-        username (str): Nom d'utilisateur.
-        password (str): Mot de passe en clair.
+        username (str): The username provided by the client.
+        password (str): The plain text password to verify.
 
     Returns:
-        bool: True si le mot de passe correspond, False sinon.
+        bool: True if the password matches, False otherwise.
     """
     if username in users:
         return check_password_hash(users[username]["password"], password)
     return False
 
 
-@app.route('/basic-protected')
+@app.route('/basic-protected', methods=['GET'])
 @auth.login_required
 def protected():
     """
-    Route protégée par authentification basique.
+    Endpoint protected by Basic Authentication.
 
     Returns:
-        str: Message d'autorisation si identifiants valides.
+        JSON: Authorization message if credentials are valid.
     """
     return jsonify(message="Basic Auth: Access Granted")
 
@@ -62,10 +63,10 @@ def protected():
 @app.route("/login", methods=['POST'])
 def login():
     """
-    Authentifie un utilisateur et génère un token JWT.
+    Authenticate user and return a JWT token.
 
     Returns:
-        JSON: access_token si les identifiants sont valides.
+        JSON: access_token if credentials are valid.
     """
     data = request.get_json()
     username = data.get('username')
@@ -76,15 +77,23 @@ def login():
         return jsonify(access_token=access_token)
     return jsonify({"error": "Invalid credentials"}), 401
 
+@app.route('/admin-only')
+@jwt_required()
+def admin_only():
+    """Endpoint restricted to users with admin role"""
+    current_user = get_jwt_identity()
+    if current_user['role'] != 'admin':
+        return jsonify({"error": "Admin access required"}), 403
+    return "Admin Access: Granted"
 
 @app.route("/jwt-protected", methods=["GET"])
 @jwt_required()
 def jwt_protected():
     """
-    Route protégée par JWT.
+    Endpoint protected by JWT Authentication.
 
     Returns:
-        str: Message d'accès autorisé si le token est valide.
+        str: Authorization message if token is valid.
     """
     return "JWT Auth: Access Granted"
 
@@ -92,13 +101,13 @@ def jwt_protected():
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     """
-    Gestion du token manquant ou invalide.
+    Handle missing or invalid JWT token.
 
     Args:
-        err (str): Message d'erreur.
+        err (str): Error message.
 
     Returns:
-        JSON: Message d'erreur avec code 401.
+        JSON: Error message with 401 status code.
     """
     return jsonify({"error": "Missing or invalid token"}), 401
 
@@ -106,13 +115,13 @@ def handle_unauthorized_error(err):
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
     """
-    Gestion d'un token invalide.
+    Handle invalid JWT token.
 
     Args:
-        err (str): Message d'erreur.
+        err (str): Error message.
 
     Returns:
-        JSON: Message d'erreur avec code 401.
+        JSON: Error message with 401 status code.
     """
     return jsonify({"error": "Invalid token"}), 401
 
@@ -120,14 +129,14 @@ def handle_invalid_token_error(err):
 @jwt.expired_token_loader
 def handle_expired_token_error(jwt_header, jwt_payload):
     """
-    Gestion d'un token expiré.
+    Handle expired JWT token.
 
     Args:
-        jwt_header (dict): En-tête JWT.
-        jwt_payload (dict): Données JWT.
+        jwt_header (dict): JWT header data.
+        jwt_payload (dict): JWT payload data.
 
     Returns:
-        JSON: Message d'erreur avec code 401.
+        JSON: Error message with 401 status code.
     """
     return jsonify({"error": "Token has expired"}), 401
 
@@ -135,14 +144,14 @@ def handle_expired_token_error(jwt_header, jwt_payload):
 @jwt.revoked_token_loader
 def handle_revoked_token_error(jwt_header, jwt_payload):
     """
-    Gestion d'un token révoqué.
+    Handle revoked JWT token.
 
     Args:
-        jwt_header (dict): En-tête JWT.
-        jwt_payload (dict): Données JWT.
+        jwt_header (dict): JWT header data.
+        jwt_payload (dict): JWT payload data.
 
     Returns:
-        JSON: Message d'erreur avec code 401.
+        JSON: Error message with 401 status code.
     """
     return jsonify({"error": "Token has been revoked"}), 401
 
@@ -150,18 +159,18 @@ def handle_revoked_token_error(jwt_header, jwt_payload):
 @jwt.needs_fresh_token_loader
 def handle_needs_fresh_token_error(jwt_header, jwt_payload):
     """
-    Gestion d'un token non frais.
+    Handle requests that require a fresh JWT token.
 
     Args:
-        jwt_header (dict): En-tête JWT.
-        jwt_payload (dict): Données JWT.
+        jwt_header (dict): JWT header data.
+        jwt_payload (dict): JWT payload data.
 
     Returns:
-        JSON: Message d'erreur avec code 401.
+        JSON: Error message with 401 status code.
     """
     return jsonify({"error": "Fresh token required"}), 401
 
 
 if __name__ == "__main__":
-    # Lancement de l'application Flask en mode debug
+    # Start the Flask development server in debug mode
     app.run(debug=True)
