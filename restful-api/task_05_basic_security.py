@@ -18,14 +18,14 @@ auth = HTTPBasicAuth()
 
 # In-memory user database with hashed passwords and roles
 users = {
-    "bob": {
-        "username": "bob",
-        "password": generate_password_hash("toto"),
+    "user1": {
+        "username": "user1",
+        "password": generate_password_hash("password"),
         "role": "user"
     },
-    "admin": {
+    "admin1": {
         "username": "admin1",
-        "password": generate_password_hash("adminpass"),
+        "password": generate_password_hash("password"),
         "role": "admin"
     }
 }
@@ -69,22 +69,22 @@ def login():
         JSON: access_token if credentials are valid.
     """
     data = request.get_json()
+    if not data:
+        return jsonify({"error": "Invalid credentials"}), 401
+
     username = data.get('username')
     password = data.get('password')
 
     if username in users and check_password_hash(users[username]["password"], password):
-        access_token = create_access_token(identity=username)
+        # Include user role and username in the token identity
+        identity = {
+            "username": username,
+            "role": users[username]["role"]
+        }
+        access_token = create_access_token(identity=identity)
         return jsonify(access_token=access_token)
     return jsonify({"error": "Invalid credentials"}), 401
 
-@app.route('/admin-only')
-@jwt_required()
-def admin_only():
-    """Endpoint restricted to users with admin role"""
-    current_user = get_jwt_identity()
-    if current_user['role'] != 'admin':
-        return jsonify({"error": "Admin access required"}), 403
-    return "Admin Access: Granted"
 
 @app.route("/jwt-protected", methods=["GET"])
 @jwt_required()
@@ -98,6 +98,30 @@ def jwt_protected():
     return "JWT Auth: Access Granted"
 
 
+@app.route('/admin-only', methods=['GET'])
+@jwt_required()
+def admin_only():
+    """
+    Endpoint restricted to users with admin role.
+
+    Returns:
+        str: Success message if user is admin, error if not.
+    """
+    current_user = get_jwt_identity()
+
+    # Check if current_user is a dict (new format) or string (old format)
+    if isinstance(current_user, dict):
+        user_role = current_user.get('role')
+    else:
+        # Fallback for string identity - look up user in database
+        user_role = users.get(current_user, {}).get('role')
+
+    if user_role != 'admin':
+        return jsonify({"error": "Admin access required"}), 403
+    return "Admin Access: Granted"
+
+
+# JWT Error Handlers
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     """
