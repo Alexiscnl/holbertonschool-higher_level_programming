@@ -56,7 +56,7 @@ def protected():
     Returns:
         str: Message d'autorisation si identifiants valides.
     """
-    return "Basic Auth: Access Granted"
+    return jsonify(message="Basic Auth: Access Granted")
 
 
 @app.route("/login", methods=['POST'])
