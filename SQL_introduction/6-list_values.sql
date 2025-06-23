@@ -1,2 +1,3 @@
--- chnage value in first_table 
-INSERT INTO first_table(id, name) VALUES(89, 'Best School')
+-- dysplay first_table
+SELECT * FROM first_table;
+
