@@ -1,7 +1,8 @@
 -- This script creates the database hbtn_0d_usa and the table states.
 -- The table states contains an auto-incremented primary key `id` and a non-null `name`.
 CREATE DATABASE IF NOT EXISTS hbtb_0d_usa;
-CREATE TABLE IF NOT EXISTS hbtb_0d_usa.states(
+USE hbtb_0d_usa;
+CREATE TABLE IF NOT EXISTS states(
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	name VARCHAR(256) NOT NULL
 );
