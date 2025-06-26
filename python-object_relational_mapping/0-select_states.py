@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Lists all states from the database hbtn_0e_0_usa, sorted by id ascending."""
 import MySQLdb
 import sys
