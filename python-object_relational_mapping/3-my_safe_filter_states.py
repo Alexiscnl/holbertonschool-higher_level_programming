@@ -10,8 +10,8 @@ import sys
 
 if __name__ == "__main__":
 
-    states_name=sys.argv[4]
-    
+    states_name = sys.argv[4]
+
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -21,8 +21,8 @@ if __name__ == "__main__":
     )
     cur = db.cursor()
     cur.execute(
-        "SELECT * FROM states WHERE BINARY name = %s ORDER BY id ASC"
-        , (states_name, ))
+        "SELECT * FROM states WHERE BINARY name = %s ORDER BY id ASC",
+        (states_name, ))
     lines = cur.fetchall()
     for i in lines:
         print(i)
