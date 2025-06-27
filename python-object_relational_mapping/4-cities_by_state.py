@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""Lists all cities from the database
-hbtn_0e_0_usa, with their state name."""
+"""
+Lists all cities from the database
+hbtn_0e_0_usa, with their state name.
+"""
 
 
 import MySQLdb
