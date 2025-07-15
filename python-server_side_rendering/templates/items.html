@@ -1,26 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Item List</title>
+    <title>Items List</title>
 </head>
-	<body>
-		{%include 'header.html' %}
-		
-		<h1>Item List</h1>
+<body>
+    {% include 'header.html' %}
 
-		{% if items %}
-			<ul>
-				{% for item in items %}
-					<li>{{item}}</li>
-				{% endfor %}
-			</ul>
+    <h1>Items List</h1>
 
-		{% else %}
-			<p>No items found</p>
-		{% endif %}
+    {% if items %}
+        <ul>
+        {% for item in items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No items found</p>
+    {% endif %}
 
-		{%include 'footer.html' %}
-	</body>
+    {% include 'footer.html' %}
+</body>
 </html>
-
