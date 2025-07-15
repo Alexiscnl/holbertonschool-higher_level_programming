@@ -4,17 +4,23 @@
 	<meta charset="UTF-8">
 	<title>Item List</title>
 </head>
-<body>
-	<h1>Item List</h1>
-	{% if items %}
-		<ul>
-			{% for item in items %}
-				<li>{{item}}</li>
-			{% endfor %}
-		</ul>
-	{% else %}
-		<p>No items found</p>
-	{% endif %}
-</body>
+	<body>
+		{%include 'header.html' %}
+		
+		<h1>Item List</h1>
+
+		{% if items %}
+			<ul>
+				{% for item in items %}
+					<li>{{item}}</li>
+				{% endfor %}
+			</ul>
+
+		{% else %}
+			<p>No items found</p>
+		{% endif %}
+
+		{%include 'footer.html' %}
+	</body>
 </html>
 
