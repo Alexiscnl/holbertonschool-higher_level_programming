@@ -1,0 +1,4 @@
+[
+	{"id": 1, "name": "Laptop", "category": "Electronics", "price": 799.99},
+ 	{"id": 2, "name": "Coffee Mug", "category": "Home Goods", "price": 15.99}
+]
